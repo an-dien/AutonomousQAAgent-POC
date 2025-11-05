@@ -1,14 +1,12 @@
 name: Python Unit Tests
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  build:
+  pytest:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
