@@ -24,6 +24,7 @@ jobs:
         run: |
           echo ${{ inputs.resumeUrl }}
           echo ${{ inputs.branch }}
+          git status
           # git checkout ${{ inputs.branch }}
           # git checkout -b ${{ inputs.branch }}-aqa
           # git push --set-upstream origin ${{ inputs.branch }}-aqa
