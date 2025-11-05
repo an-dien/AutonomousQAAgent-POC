@@ -7,6 +7,10 @@ on:
         description: 'The URL of the resume'
         required: true # or false, depending on your needs
         type: 'string' # if using a modern schema
+      test:
+        description: 'The URL of the resume'
+        required: true # or false, depending on your needs
+        type: 'string' # if using a modern schema
 
 jobs:
   createNewBranch:
@@ -29,6 +33,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Send data back to n8n
         run: |
+          echo ${{ inputs.test }}
           originUrl="${{ inputs.resumeUrl }}"
           searchStr="http://localhost:5678/"
           replaceStr="https://test.omega.wizeline.io/"
