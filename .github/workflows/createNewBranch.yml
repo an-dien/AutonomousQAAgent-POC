@@ -25,14 +25,14 @@ jobs:
           search_string="http://localhost:5678/"
           replace_string="https://test.omega.wizeline.io/"
           result_sed=$(echo "inputs.resumeUrl" | sed "s/$search_string/$replace_string/g")
-          echo ${{ result_sed }}
+          echo result_sed
           echo ${{ inputs.branch }}
           git status
           git checkout ${{ inputs.branch }}
           git checkout -b ${{ inputs.branch }}-aqa
           git push --set-upstream origin ${{ inputs.branch }}-aqa
           # Use curl to make the request (example uses a placeholder URL and GET method)
-          curl -X GET "${{ result_sed }}" \
+          curl -X GET "result_sed" \
             -H "Accept: application/json" \
             -H "Authorization: Bearer ${{ secrets.API_TOKEN }}"
         env:
