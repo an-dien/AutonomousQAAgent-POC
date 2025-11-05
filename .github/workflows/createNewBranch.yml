@@ -7,6 +7,10 @@ on:
         description: 'The URL of the resume'
         required: false # or false, depending on your needs
         type: 'string' # if using a modern schema
+      branch:
+        description: 'The starting branch'
+        required: true # or false, depending on your needs
+        type: 'string'
 
 jobs:
   createNewBranch:
@@ -18,7 +22,8 @@ jobs:
         uses: actions/checkout@v4
       - name: create new branch
         run: |
-          git checkout -b an-test
-          git push --set-upstream origin an-test
+          git checkout ${{ inputs.branch }}
+          git checkout -b aqa-${{ inputs.branch }}
+          git push --set-upstream origin aqa-${{ inputs.branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
