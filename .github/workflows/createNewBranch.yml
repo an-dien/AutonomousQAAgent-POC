@@ -25,5 +25,9 @@ jobs:
           git checkout ${{ inputs.branch }}
           git checkout -b ${{ inputs.branch }}-aqa
           git push --set-upstream origin ${{ inputs.branch }}-aqa
+          # Use curl to make the request (example uses a placeholder URL and GET method)
+          curl -X GET "${{ inputs.resumeUrl }}" \
+            -H "Accept: application/json" \
+            -H "Authorization: Bearer ${{ secrets.API_TOKEN }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
