@@ -2,6 +2,11 @@ name: Create New Branch
 
 on:
   workflow_dispatch:
+    inputs:
+      resumeUrl:
+        description: 'The URL of the resume'
+        required: false # or false, depending on your needs
+        type: 'string' # if using a modern schema
 
 jobs:
   createNewBranch:
