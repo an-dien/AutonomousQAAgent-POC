@@ -23,7 +23,7 @@ jobs:
       - name: create new branch
         run: |
           git checkout ${{ inputs.branch }}
-          git checkout -b aqa-${{ inputs.branch }}
-          git push --set-upstream origin aqa-${{ inputs.branch }}
+          git checkout -b ${{ inputs.branch }}-aqa
+          git push --set-upstream origin ${{ inputs.branch }}-aqa
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
