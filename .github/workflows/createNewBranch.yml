@@ -4,7 +4,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  createNewBranch:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
