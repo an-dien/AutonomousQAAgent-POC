@@ -1,0 +1,13 @@
+name: Create New Branch
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: create new branch
+      run: git checkout -b an-test
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
