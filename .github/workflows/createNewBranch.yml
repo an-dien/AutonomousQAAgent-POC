@@ -36,10 +36,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Send data back to n8n
         run: |
-          echo ${{ inputs.test }}
           originUrl="${{ inputs.resumeUrl }}"
-          searchStr="http://localhost:5678"
-          resumeUrl="${originUrl//$searchStr/$N8N_HOST}"
+          # if originUrl is http://localhost:<port>(/path)? replace with N8N_HOST preserving path
+          if [[ $originUrl =~ ^http://localhost:[0-9]+(/.*)?$ ]]; then
+            resumeUrl="$N8N_HOST${BASH_REMATCH[1]}"
+          else
+            resumeUrl="$originUrl"
+          fi
+          echo $resumeUrl
           curl -X POST \
              -H "Content-Type: application/json" \
              -d '{"branch": "${{ steps.create-aqa-branch.outputs.branch }}"}' \
